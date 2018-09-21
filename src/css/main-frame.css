@@ -1,0 +1,88 @@
+@import url("https://fonts.googleapis.com/css?family=Tajawal");
+body {
+  background: #000;
+}
+body .clock {
+  width: 800px;
+  height: 800px;
+  background: #262626;
+  margin: 3em auto;
+  padding: 3em;
+  display: flex;
+}
+body .clock .time {
+  border-radius: 50px;
+  border: 2px solid #424242;
+  width: 80%;
+  overflow: hidden;
+  height: auto;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+body .clock .time #timestamp {
+  font-size: 2em;
+  font-family: "Tajawal", sans-serif;
+  color: #fff;
+}
+body .clock .time #timestamp .red {
+  color: #c30000;
+}
+body .clock .hours {
+  border-radius: 50px;
+  border: 2px solid #424242;
+  margin-left: 1em !important;
+  width: 100%;
+  overflow: hidden;
+  height: auto;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+body .clock .hours .hour {
+  border-bottom: 2px solid #424242;
+  flex-grow: 1;
+  width: 100%;
+}
+body .clock .hours .hour.active {
+  border-bottom: 2px solid #fff;
+}
+body .clock .minutes {
+  margin-right: 1em;
+  margin-left: 1em;
+  border-radius: 50px;
+  border: 2px solid #424242;
+  width: 50%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+body .clock .minutes .minute {
+  flex-grow: 1;
+  border-bottom: 2px solid #424242;
+  width: 100%;
+}
+body .clock .minutes .minute.active {
+  border-bottom: 2px solid #fff;
+}
+body .clock .seconds {
+  border-radius: 50px;
+  border: 2px solid #424242;
+  width: 20%;
+  height: auto;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+body .clock .seconds .second {
+  border-bottom: 2px solid #424242;
+  flex-grow: 1;
+  width: 100%;
+}
+body .clock .seconds .second.active {
+  border-bottom: 2px solid #c30000;
+}
