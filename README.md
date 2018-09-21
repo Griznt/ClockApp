@@ -5,7 +5,7 @@ Used her code and CSS styles from codepen https://codepen.io/rblakstad/pen/qMvja
 
 ### demo: https://clockreactapp.herokuapp.com/
 
-![preview]("./src/img/clockAppPreview.png")
+![preview](src/img/clockAppPreview.png)
 
 #### build
 
