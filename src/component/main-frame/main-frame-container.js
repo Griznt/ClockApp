@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./../../css/main-frame.css";
 import MainFrame from "./main-frame";
-import { checkTime } from "../../utils";
+import { checkTime, prepareHours } from "../../utils";
 
 class MainFrameContainer extends Component {
   constructor(props) {
@@ -22,7 +22,7 @@ class MainFrameContainer extends Component {
 
   startTime() {
     const today = new Date();
-    const h = today.getHours();
+    const h = prepareHours(today.getHours());
     let m = today.getMinutes();
     let s = today.getSeconds();
     m = checkTime(m);
