@@ -61,10 +61,11 @@ class MainFrameContainer extends Component {
     const auth2 = window.gapi.auth2.getAuthInstance();
     auth2.signOut().then(function () {
       console.log("User signed out.");
-      this.setState({
-        name: null,
-        imgUrl: null,
-      });
+      if (!!this)
+        this.setState({
+          name: null,
+          imgUrl: null,
+        });
     });
   }
 
@@ -96,6 +97,7 @@ class MainFrameContainer extends Component {
         minute={this.state.m}
         second={this.state.s}
         signIn={this.signIn}
+        signOut={this.signOut}
         name={this.state.name}
         imgUrl={this.state.imgUrl}
       />
