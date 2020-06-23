@@ -10,14 +10,64 @@ class MainFrameContainer extends Component {
       timestamp: null,
       h: null,
       m: null,
-      s: null
+      s: null,
+      name: null,
+      imgUrl: null,
     };
     this.startTime = this.startTime.bind(this);
+    this.signOut = this.signOut.bind(this);
+    this.signIn = this.signIn.bind(this);
     this.timerId = null;
   }
-
   componentDidMount() {
     this.startTime();
+    const _onInit = (auth2) => {
+      console.log("init OK", auth2);
+    };
+    const _onError = (err) => {
+      console.log("error", err);
+    };
+    window.gapi.load("auth2", function () {
+      window.gapi.auth2
+        .init({
+          apiKey: process.env.REACT_APP_GOOGLE_API_KEY,
+          // не забудьте указать ваш ключ в .env
+          client_id: process.env.REACT_APP_GOOGLE_CLIENT_ID,
+        })
+        .then(_onInit, _onError);
+    });
+  }
+  signIn() {
+    const auth2 = window.gapi.auth2.getAuthInstance();
+    auth2.signIn().then((googleUser) => {
+      // метод возвращает объект пользователя
+      // где есть все необходимые нам поля
+      const profile = googleUser.getBasicProfile();
+      console.log("ID: " + profile.getId()); // не посылайте подобную информацию напрямую, на ваш сервер!
+      console.log("Full Name: " + profile.getName());
+      console.log("Given Name: " + profile.getGivenName());
+      console.log("Family Name: " + profile.getFamilyName());
+      console.log("Image URL: " + profile.getImageUrl());
+      console.log("Email: " + profile.getEmail());
+
+      // токен
+      const id_token = googleUser.getAuthResponse().id_token;
+      console.log("ID Token: " + id_token);
+      this.setState({
+        name: profile.getName(),
+        imgUrl: profile.getImageUrl(),
+      });
+    });
+  }
+  signOut() {
+    const auth2 = window.gapi.auth2.getAuthInstance();
+    auth2.signOut().then(function () {
+      console.log("User signed out.");
+      this.setState({
+        name: null,
+        imgUrl: null,
+      });
+    });
   }
 
   startTime() {
@@ -31,7 +81,7 @@ class MainFrameContainer extends Component {
       timestamp: h + ":" + m + ":" + s,
       h,
       m,
-      s
+      s,
     });
     this.timerId = setTimeout(this.startTime, 500);
   }
@@ -47,6 +97,9 @@ class MainFrameContainer extends Component {
         hour={this.state.h}
         minute={this.state.m}
         second={this.state.s}
+        signIn={this.signIn}
+        name={this.state.name}
+        imgUrl={this.state.imgUrl}
       />
     );
   }

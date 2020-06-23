@@ -3,22 +3,35 @@ import Timestamp from "../timestamp/timestamp";
 import SecondsContainer from "../seconds/seconds-container";
 import MinutesContainer from "../minutes/minutes-container";
 import HoursContainer from "../hours/hours-container";
+import User from "../user";
 
-const MainFrame = props => {
+const MainFrame = ({
+  timestamp,
+  hour,
+  minute,
+  second,
+  signIn,
+  signOut,
+  name,
+  imgUrl,
+}) => {
   return (
     <div className="clock">
       <div className="time">
-        <Timestamp timestamp={props.timestamp} />
+        <Timestamp timestamp={timestamp} />
       </div>
       <div className="hours">
-        <HoursContainer hour={props.hour} />
+        <HoursContainer hour={hour} />
       </div>
       <div className="minutes">
-        <MinutesContainer minute={props.minute} />
+        <MinutesContainer minute={minute} />
       </div>
       <div className="seconds">
-        <SecondsContainer second={props.second} />
+        <SecondsContainer second={second} />
       </div>
+      {!name && <button onClick={this.signIn}>Log in</button>}
+      {!!name && <button onClick={this.signOut}>Log out</button>}
+      {!!name && <User name={name} imgUrl={imgUrl} />}
     </div>
   );
 };
