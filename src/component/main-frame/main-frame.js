@@ -29,8 +29,8 @@ const MainFrame = ({
       <div className="seconds">
         <SecondsContainer second={second} />
       </div>
-      {!name && <button onClick={this.signIn}>Log in</button>}
-      {!!name && <button onClick={this.signOut}>Log out</button>}
+      {!name && <button onClick={signIn}>Log in</button>}
+      {!!name && <button onClick={signOut}>Log out</button>}
       {!!name && <User name={name} imgUrl={imgUrl} />}
     </div>
   );

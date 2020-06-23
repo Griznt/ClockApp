@@ -30,8 +30,6 @@ class MainFrameContainer extends Component {
     window.gapi.load("auth2", function () {
       window.gapi.auth2
         .init({
-          apiKey: process.env.REACT_APP_GOOGLE_API_KEY,
-          // не забудьте указать ваш ключ в .env
           client_id: process.env.REACT_APP_GOOGLE_CLIENT_ID,
         })
         .then(_onInit, _onError);
